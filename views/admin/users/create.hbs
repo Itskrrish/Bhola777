@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stellar Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/admin/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/admin/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/admin/vendors/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="./vendors/chartist/chartist.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/admin/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        {{!-- {{admin/partials/_sidebar}} --}}
+        {{> navbar}}
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            {{> sidebar}}
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <!-- admin/users/index.hbs -->
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-sm-flex align-items-center mb-4">
+                                        <a class="btn btn-primary btn-lg disabled" tabindex="-1" role="button" style="
+                                            border-radius:12px">CREATE
+                                            USERS</a>
+
+                                    </div>
+                                    <style>
+                                        body {
+                                            background-image: url(/img/login_background.avif);
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            background-size: cover;
+                                            font-family: 'Rubik', sans-serif;
+                                            font-size: 0.875rem;
+                                            color: #666;
+                                            background-color: #fafafa;
+                                            overflow-x: hidden;
+                                            height: 100%;
+                                        }
+
+                                        form {
+                                            background-color: #fff;
+                                            border: 1px solid #eaeaea;
+                                            margin: 0 auto;
+                                            padding: 20px;
+                                            width: 400px;
+                                            border-radius: 12px;
+                                            padding-top: 20px
+                                        }
+
+                                        .account-logo {
+                                            margin-bottom: 20px;
+                                            text-align: center;
+                                        }
+
+                                        .account-box a {
+                                            color: #333;
+                                            font-size: 14px;
+                                            background-color: black;
+                                        }
+
+                                        .account-logo img {
+                                            max-height: 60px;
+                                            width: auto;
+                                        }
+                                    </style>
+                                    </head>
+
+                                    <body>
+                                        <div class="container-fluid d-flex justify-content-center align-items-center"
+                                            style="height:100%">
+                                            <form action="" method="post" id="loginForm">
+                                                <div class="account-logo">
+                                                    <a href="https://chennaimatka.live">
+                                                        {{!-- <img
+                                                            src="https://shivaxchange.com/img/shaktibooklogo-removebg-preview.png"
+                                                            alt=""> --}}
+                                                    </a>
+                                                </div>
+                                                <!-- Email input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="phone" class="form-control" name="phone" />
+                                                    <label class="form-label" for="form2Example1">Phone Number</label>
+                                                </div>
+
+                                                <!-- Password input -->
+                                                <div class="form-outline mb-4">
+                                                    <input type="password" id="password" class="form-control"
+                                                        name="password" />
+                                                    <label class="form-label" for="form2Example2">Password</label>
+                                                </div>
+
+                                                <!-- 2 column grid layout for inline styling -->
+                                                <div class="row mb-4">
+                                                    <div class="col d-flex justify-content-center">
+                                                        <!-- Checkbox -->
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="form2Example31" checked />
+                                                            <label class="form-check-label" for="form2Example31">
+                                                                Remember me </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <!-- Simple link -->
+                                                        <a href="#!">Forgot password?</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Submit button -->
+                                                <button type="submit" class="btn btn-primary btn-block mb-4"
+                                                    id="submitform">Sign in</button>
+
+                                                <!-- Register buttons -->
+
+                                            </form>
+                                        </div>
+
+                                    </body>
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#loginForm').submit(function (e) {
+                                                console.log("request sent");
+                                                e.preventDefault(); // Prevent the default form submission
+
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: '/sign-up', // Update the URL to match your backend route
+                                                    data: $(this).serialize(), // Serialize the form data
+                                                    success: function (response) {
+                                                        if (response.success) {
+                                                            // Show success message with SweetAlert
+                                                            Swal.fire({
+                                                                icon: 'success',
+                                                                title: 'User Created Successful!',
+                                                                text: response.message,
+                                                            }).then((result) => {
+                                                                // Redirect to admin page after successful login
+                                                                window.location.href = response.redirectUrl;
+                                                            });
+                                                        } else {
+                                                            // Show error message with SweetAlert
+                                                            Swal.fire({
+                                                                icon: 'error',
+                                                                title: 'Operation Failed',
+                                                                text: response.message,
+                                                            });
+                                                        }
+                                                    },
+                                                    error: function (xhr, status, error) {
+                                                        // Show error message with SweetAlert for AJAX error
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Oops...',
+                                                            text: 'Something went wrong!',
+                                                        });
+                                                    },
+                                                });
+                                            });
+                                        });
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        {{> footer}}
+    </div>
+
+</body>
+
+</html>

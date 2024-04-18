@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title> SHAKTIBOOK: Online Sports Betting and Casino Sites in India </title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url(/img/login_background.avif);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            font-family: 'Rubik', sans-serif;
+            font-size: 0.875rem;
+            color: #666;
+            background-color: #fafafa;
+            overflow-x: hidden;
+            height: 100%;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+            margin: 0 auto;
+            padding: 20px;
+            width: 400px;
+            border-radius: 12px;
+            padding-top: 20px
+        }
+
+        .account-logo {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .account-box a {
+            color: #333;
+            font-size: 14px;
+            background-color: black;
+        }
+
+        .account-logo img {
+            max-height: 60px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center" style="height:100%">
+        <form action="/sign-up" method="post" id="loginForm">
+            <div class="account-logo">
+                <a href="https://chennaimatka.live">
+                    <img src="https://shivaxchange.com/img/shaktibooklogo-removebg-preview.png" alt="">
+                </a>
+            </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="phone" class="form-control" name="phone" />
+                <label class="form-label" for="form2Example1">Phone Number</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password" class="form-control" name="password" />
+                <label class="form-label" for="form2Example2">Password</label>
+            </div>
+
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                    </div>
+                </div>
+
+                {{!-- <div class="col">
+                    <!-- Simple link -->
+                    <a href="#!">Forgot password?</a>
+                </div> --}}
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Already a member? <a href="/login">Sign In</a></p>
+                <p>or sign up with:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+{{!--
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const formData = {
+            phone: document.getElementById('phone').value,
+            password: document.getElementById('password').value
+        };
+
+        fetch('/sign-up', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.token);
+                const jwtToken = data.token;
+                Window.sessionStorage.setItem('jwtToken', data.token);
+                // Redirect or perform any other actions as needed
+
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+
+</script> --}}
+
+</html>

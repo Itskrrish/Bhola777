@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Stellar Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/admin/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/admin/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/admin/vendors/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="./vendors/chartist/chartist.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/admin/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css">
+    <script src="/object.js"></script>
+    <style>
+        .text-box {
+            border-radius: 3px;
+            background: #ecf0f4;
+            height: 98px;
+            width: 100%;
+            margin-right: 5px;
+            color: black;
+            overflow-y: auto;
+            padding: 2px 5px;
+        }
+
+        .content-wrapper {
+            padding: 0 !important;
+        }
+
+        .chat-online {
+            color: #fff
+        }
+
+        .chat-offline {
+            color: #e4606d
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            max-height: 800px;
+            overflow-y: scroll
+        }
+
+        .chat-message-left,
+        .chat-message-right {
+            display: flex;
+            flex-shrink: 0
+        }
+
+        .chat-message-left {
+            margin-right: auto
+        }
+
+        .chat-message-right {
+            flex-direction: row-reverse;
+            margin-left: auto
+        }
+
+        .py-3 {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important;
+        }
+
+        .flex-grow-0 {
+            flex-grow: 0 !important;
+        }
+
+        .border-top {
+            border-top: 1px solid #dee2e6 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        {{!-- {{admin/partials/_sidebar}} --}}
+        {{!-- <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex align-items-center">
+                <a class="navbar-brand brand-logo" href="index.html">
+                    <img src="admin/images/logo.svg" alt="logo" class="logo-dark" />
+                </a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg"
+                        alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+                <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome SHAKTI BOOK !</h5>
+                <ul class="navbar-nav navbar-nav-right ml-auto">
+                    <form class="search-form d-none d-md-block" action="#">
+                        <i class="icon-magnifier"></i>
+                        <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                    </form>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#"
+                            data-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-speech"></i>
+                            <span class="count">7</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                            aria-labelledby="messageDropdown">
+                            <a class="dropdown-item py-3">
+                                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
+                                <span class="badge badge-pill badge-primary float-right">View all</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="admin/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
+                                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
+                                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow py-2">
+                                    <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
+                                    <p class="font-weight-light small-text"> The meeting is cancelled </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center">
+                        <a class="nav-link d-flex align-items-center dropdown-toggle" id="LanguageDropdown" href="#"
+                            data-toggle="dropdown" aria-expanded="false">
+                            <div class="d-inline-flex mr-3">
+                                <i class="flag-icon flag-icon-us"></i>
+                            </div>
+                            <span class="profile-text font-weight-normal">English</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left navbar-dropdown py-2"
+                            aria-labelledby="LanguageDropdown">
+                            <a class="dropdown-item">
+                                <i class="flag-icon flag-icon-us"></i> English </a>
+                            <a class="dropdown-item">
+                                <i class="flag-icon flag-icon-fr"></i> French </a>
+                            <a class="dropdown-item">
+                                <i class="flag-icon flag-icon-ae"></i> Arabic </a>
+                            <a class="dropdown-item">
+                                <i class="flag-icon flag-icon-ru"></i> Russian </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+                        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
+                            aria-expanded="false">
+                            <img class="img-xs rounded-circle ml-2" src="images/faces/face8.jpg" alt="Profile image">
+                            <span class="font-weight-normal"> Henry Klein </span></a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+                                <p class="mb-1 mt-3">Allen Moreno</p>
+                                <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
+                            </div>
+                            <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My
+                                Profile <span class="badge badge-pill badge-danger">1</span></a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i>
+                                Messages</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i>
+                                Activity</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i>
+                                FAQ</a>
+                            <a class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign
+                                Out</a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav> --}}
+        {{> navbar}}
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            {{> sidebar}}
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-content page-container" id="page-content">
+                        <div class="">
+                            <main class="content">
+                                <div class="container p-0">
+                                    <i class="fa fa-arrow-left" aria-hidden="true" id="backButton"></i>
+                                    <button type="button" class="btn btn-info m-3">Messages</button>
+
+                                    <div class="card">
+                                        <div class="row g-0">
+
+                                            <div class="col-12 col-lg-12 col-xl-9">
+                                                <div class="py-2 px-4 border-bottom d-none d-lg-block">
+                                                    <div class="d-flex align-items-center py-1">
+                                                        <div class="position-relative">
+                                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnGadCzVRGCOQy1IKO_x7OX5jJm9G1pyD3vt1tL9fjVw&s"
+                                                                class="rounded-circle mr-1" alt="Sharon Lessman"
+                                                                width="40" height="40">
+                                                        </div>
+                                                        {{!-- <div class="flex-grow-1 pl-3">
+                                                            <strong class="active_user_phoen">Sharon Lessman</strong>
+                                                            <div class="text-muted small"><em>Typing...</em></div>
+                                                        </div> --}}
+                                                        <div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="position-relative">
+                                                    <div class="chat-messages p-4">
+
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-grow-0 py-3 px-4 border-top m-3">
+                                                    <div class="message_footer" style="flex-shrink: 0;
+    display: flex;
+    padding-top: 10px;
+    max-height: 90px;
+    background: transparent;">
+                                                        <div class="text-box message_box" contenteditable="true"
+                                                            disabled="false">
+                                                            <div><br></div>
+                                                        </div>
+                                                        <button id="sendMessage" style=" background: #1bdbe0;
+    border: 0;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+">send</button>
+                                                    </div>
+
+                                                    {{!-- <div class="input-group">
+                                                        <input type="text" class="form-control message_box"
+                                                            placeholder="Type your message">
+                                                        <button class="btn btn-primary send_admin_message">Send</button>
+                                                    </div> --}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                {{> footer}}
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        const firstUserId = $('#chatusers a:first').data('user-id');
+        $('.message_box').attr('data-user-id', firstUserId);
+    });
+</script>
+
+
+{{!--
+<script>
+    $(document).ready(function () {
+        $('.send_admin_message').on('click', () => {
+
+            const message = $('.message_box').val();
+            console.log(message);
+            if (!message) {
+                alert('Write Message To Send😒');
+                return;
+            }
+
+            const userId = $('.message_box').attr('data-user-id');
+            console.log(userId);
+
+            $.ajax({
+                url: '/admin/send-message',
+                method: 'POST',
+                data: {
+                    body: message,
+                    userId: userId
+                },
+                success: function (response) {
+
+                    console.log('Message sent successfully:', response);
+
+                },
+                error: function (xhr, status, error) {
+
+                    console.error('Error sending message:', error);
+
+                }
+            });
+        });
+    });
+
+</script> --}}
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+    integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+    crossorigin="anonymous"></script>
+
+<script>
+    // Establish a connection to the Socket.io server
+    function parseCookies() {
+        return document.cookie.split(';').reduce((cookies, cookie) => {
+            const [name, value] = cookie.trim().split('=');
+            cookies[name] = decodeURIComponent(value);
+            return cookies;
+        }, {});
+    }
+
+    // Access all cookies
+    const cookies = parseCookies();
+    const token = cookies['uid'] || null;
+    console.log("Cookie Accessed successfully", token);
+
+    const socket = io('http://localhost:8001/', { query: "token=" + token });
+    socket.on("connect", () => {
+        console.log("Admin Connected to Socket server");
+        socket.emit('eventtest', () => {
+            console.log('test event fired');
+        });
+
+        socket.on("newMessagefromuser", (data) => {
+            console.log("new Message from user", data.message);
+            console.log("admin session", data.adminactivesession);
+            var path = window.location.pathname;
+            var parts = path.split('/');
+            var userId = parts[parts.length - 1];
+            if (userId == data.sender_id)
+                $(".chat-messages").append(`
+    <div class="chat-message-left pb-4">
+        <div>
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+        </div>
+        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+            <div class="font-weight-bold mb-1">User</div>
+          ${data.message}
+        </div>
+    </div>
+`);
+            else alert('new message from other user');
+        })
+        $('#sendMessage').on('click', () => {
+            var userInput = $('.text-box');
+            var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig, '\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g, '<br>');
+
+            const message = newMessage ?? null;
+            var path = window.location.pathname;
+            var parts = path.split('/');
+            var userId = parts[parts.length - 1];
+
+            function sendMessageToUser(userId, message) {
+                // Emit the "sendToUser" event to the server with the user ID and message
+
+                socket.emit("sendToUser", { userId, message });
+                $(".chat-messages").append(`
+    <div class="chat-message-right pb-4">
+        <div>
+            <img src="https://shivaxchange.com/img/shaktibooklogo-removebg-preview.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+        </div>
+        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+            <div class="font-weight-bold mb-1">ADMIN</div>
+          ${message}
+        </div>
+    </div>
+`);
+                console.log("meesage sent from admin:", message);
+                userInput.html('');
+                // focus on input
+                userInput.focus();
+            }
+            sendMessageToUser(userId, message);
+
+        });
+    });
+
+
+
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('.list-group-item').on('click', function (e) {
+            e.preventDefault();
+            var userId = $(this).data('user-id');
+            var phone = $(this).find('.user_phone').text();
+            $('.active_user_phoen').html(phone);
+            $('.message_box').attr('data-user-id', userId);
+            socket.emit("NewSessionStarted", userId);
+        });
+    });
+</script>
+
+{{!-- Ajax to load Chat --}}
+<script>
+    $(document).ready(function () {
+        console.log("Inside document ready");
+        const token = cookies['uid'] || null;
+
+        if (!Boolean(token)) return alert("Token Missing");
+    });
+</script>
+<script>
+
+</script>
+{{!-- end --}}
+<script>
+    $(document).ready(function () {
+        // Function to load chats when the page is ready
+        function loadChats(userId) {
+            $.ajax({
+                url: "/admin/load-chats",
+                method: "GET",
+                data: { user_id: userId },
+                datatype: "json",
+                success: function (response) {
+                    // Assuming response.messages is an array of messages
+                    response.messages.forEach(function (message) {
+                        if (message.sender_id == adminConfig.adminid) {
+                            $(".chat-messages").append(`
+                                <div class="chat-message-right pb-4">
+                                    <div>
+                                        <img src="https://shivaxchange.com/img/shaktibooklogo-removebg-preview.png" class="rounded-circle mr-1" alt="Admin" width="40" height="40">
+                                        <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                    </div>
+                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                        <div class="font-weight-bold mb-1">ADMIN</div>
+                                        ${message.body}
+                                    </div>
+                                </div>
+                            `);
+                        } else {
+                            $(".chat-messages").append(`
+                                <div class="chat-message-left pb-4">
+                                    <div>
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnGadCzVRGCOQy1IKO_x7OX5jJm9G1pyD3vt1tL9fjVw&s" class="rounded-circle mr-1" alt="User" width="40" height="40">
+                                        <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                    </div>
+                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                        <div class="font-weight-bold mb-1">User</div>
+                                        ${message.body}
+                                    </div>
+                                </div>
+                            `);
+                        }
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Get the user ID from the URL path
+        var path = window.location.pathname;
+        var parts = path.split('/');
+        var userId = parts[parts.length - 1];
+
+        console.log('User ID:', userId);
+
+
+        // Load chats for the user when the page is ready
+        loadChats(userId);
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var userId = $('.list-group-item:first').data('user-id');
+        var phone = $('.list-group-item:first').find('.user_phone').text();
+        $('.active_user_phoen').html(phone);
+        console.log("On LOad USERid", userId);
+        makeajaxrequest(userId);
+
+    });
+
+
+    function makeajaxrequest(userId = false) {
+        $('.chat-messages').empty();
+
+        $.ajax({
+            url: "/admin/load-chats",
+            method: "GET",
+            data: { user_id: userId },
+            datatype: "json",
+            success: function (response) {
+                // Assuming response.messages is an array of messages
+                response.messages.forEach(function (message) {
+
+
+                    if (message.sender_id == adminConfig.adminid) {
+                        $(".chat-messages").append(`
+        <div class="chat-message-right pb-4">
+        <div>
+            <img src="https://shivaxchange.com/img/shaktibooklogo-removebg-preview.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+        </div>
+        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+            <div class="font-weight-bold mb-1">ADMIN</div>
+          ${message.body}
+        </div>
+    </div>
+    `);
+                    } else {
+                        console.log(message.body);
+                        $(".chat-messages").append(`
+         <div class="chat-message-left pb-4">
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnGadCzVRGCOQy1IKO_x7OX5jJm9G1pyD3vt1tL9fjVw&s" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+        </div>
+        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+            <div class="font-weight-bold mb-1">User</div>
+          ${message.body}
+        </div>
+    </div>
+    `);
+                    }
+                });
+            }
+
+
+
+
+        });
+    }
+
+</script>
+<script>
+    document.getElementById('backButton').addEventListener('click', function () {
+
+        window.history.back();
+    });
+</script>
+
+</html>
